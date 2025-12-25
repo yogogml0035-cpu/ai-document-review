@@ -182,3 +182,7 @@ certs/
 !.ado/**
 CLAUDE.md
 AI文档审查系统工程实施计划.md
+Part 1. 智能文档审核Agent技术架构概览.pdf
+Part 2. 基于 LangChain1.1 从零搭建AI 文档审核系统.pdf
+Part 3. 基于 LangChain1.1 实现人机交互审核（HITL）.pdf
+.gitignore
