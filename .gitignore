@@ -180,3 +180,5 @@ certs/
 
 # Azure Pipelines
 !.ado/**
+CLAUDE.md
+AI文档审查系统工程实施计划.md
