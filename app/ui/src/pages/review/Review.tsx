@@ -695,40 +695,40 @@ function Review() {
           </div>
         </div>
         <div ref={pdfContainerRef} className={`${classes.pdfCompareContainer} ${!compareMode ? classes.pdfCompareSingle : ''}`}>
-          {/* Original PDF */}
-          {compareMode && (
+          <>
+            {compareMode && (
+              <div className={classes.pdfPane}>
+                <div className={classes.pdfPaneHeader}>原始文档</div>
+                <div className={classes.pdfWrap}>
+                  <Card className={classes.pdfCard}>
+                    {pdfLoadError && (
+                      <MessageBar intent="error">
+                        <MessageBarBody>{pdfLoadError}</MessageBarBody>
+                      </MessageBar>
+                    )}
+                    <Document file={originalPdfData} loading={<Spinner />} noData={<Spinner />}>
+                      <Page pageNumber={pageNumber} width={Math.floor((compareMode ? pdfContainerWidth / 2 : pdfContainerWidth) * zoom)} loading={<Spinner />} />
+                    </Document>
+                  </Card>
+                </div>
+              </div>
+            )}
             <div className={classes.pdfPane}>
-              <div className={classes.pdfPaneHeader}>原始文档</div>
+              {compareMode && <div className={classes.pdfPaneHeader}>标注文档</div>}
               <div className={classes.pdfWrap}>
                 <Card className={classes.pdfCard}>
-                  {pdfLoadError && (
+                  {pdfLoadError && !compareMode && (
                     <MessageBar intent="error">
                       <MessageBarBody>{pdfLoadError}</MessageBarBody>
                     </MessageBar>
                   )}
-                  <Document file={originalPdfData} loading={<Spinner />} noData={<Spinner />}>
+                  <Document file={pdfData} onLoadSuccess={onDocumentLoadSuccess} loading={<Spinner />} noData={<Spinner />}>
                     <Page pageNumber={pageNumber} width={Math.floor((compareMode ? pdfContainerWidth / 2 : pdfContainerWidth) * zoom)} loading={<Spinner />} />
                   </Document>
                 </Card>
               </div>
             </div>
-          )}
-          {/* Annotated PDF */}
-          <div className={classes.pdfPane}>
-            {compareMode && <div className={classes.pdfPaneHeader}>标注文档</div>}
-            <div className={classes.pdfWrap}>
-              <Card className={classes.pdfCard}>
-                {pdfLoadError && !compareMode && (
-                  <MessageBar intent="error">
-                    <MessageBarBody>{pdfLoadError}</MessageBarBody>
-                  </MessageBar>
-                )}
-                <Document file={pdfData} onLoadSuccess={onDocumentLoadSuccess} loading={<Spinner />} noData={<Spinner />}>
-                  <Page pageNumber={pageNumber} width={Math.floor((compareMode ? pdfContainerWidth / 2 : pdfContainerWidth) * zoom)} loading={<Spinner />} />
-                </Document>
-              </Card>
-            </div>
-          </div>
+          </>
         </div>
       </Card>
 

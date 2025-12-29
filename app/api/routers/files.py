@@ -17,8 +17,8 @@ async def list_files():
 
 @router.post("/api/v1/files/upload")
 async def upload_file(file: UploadFile = File(...)):
-    if not file.filename.lower().endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="Only PDF files are supported")
+    if not file.filename.lower().endswith('.pdf'):
+        raise HTTPException(status_code=400, detail="Only PDF documents are supported")
     docs_dir = Path(settings.local_docs_dir)
     docs_dir.mkdir(parents=True, exist_ok=True)
     dest = docs_dir / file.filename

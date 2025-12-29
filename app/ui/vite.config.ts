@@ -7,6 +7,12 @@ export default defineConfig({
   build: {
     outDir: '../api/www'
   },
+  optimizeDeps: {
+    include: ['@fluentui/react-icons']
+  },
+  resolve: {
+    conditions: ['default', 'import', 'module']
+  },
   server: {
     host: '127.0.0.1',
     proxy: {

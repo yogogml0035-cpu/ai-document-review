@@ -357,7 +357,7 @@ function Files() {
             onChange={handleUploadFile}
             ref={fileInput}
             style={{ display: 'none' }}
-            accept="application/pdf"
+            accept=".pdf,application/pdf"
           />
         </Card>
 
